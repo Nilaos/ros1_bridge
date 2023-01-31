@@ -291,10 +291,14 @@ int main(int argc, char * argv[])
           printf("Setting up QoS for '%s': ", topic_name.c_str());
           auto qos_settings = qos_from_params(topics[i]["qos"]);
           printf("\n");
+          RCLCPP_INFO(ros2_node->get_logger(), "Creating new bridge 1:2 for '%s' [%s] with custom QoS", \
+            topic_name.c_str(), type_name.c_str());
           ros1_bridge::BridgeHandles handles = ros1_bridge::create_bidirectional_bridge(
             ros1_node, ros2_node, "", type_name, topic_name, queue_size, qos_settings);
           all_handles.push_back(handles);
         } else {
+          RCLCPP_INFO(ros2_node->get_logger(), "Creating new bridge 1:2 for '%s' [%s] with default QoS\n", \
+            topic_name.c_str(), type_name.c_str());
           ros1_bridge::BridgeHandles handles = ros1_bridge::create_bidirectional_bridge(
             ros1_node, ros2_node, "", type_name, topic_name, queue_size);
           all_handles.push_back(handles);
