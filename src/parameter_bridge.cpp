@@ -93,7 +93,7 @@ rclcpp::QoS qos_from_params(XmlRpc::XmlRpcValue qos_params)
       } else {
         fprintf(
           stderr,
-          "invalid value for 'durability': '%s', allowed values are 'best_effort', 'volatile'\n",
+          "invalid value for 'durability': '%s', allowed values are 'transient_local', 'volatile'\n",
           durability.c_str());
       }
     }
